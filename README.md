@@ -2,11 +2,13 @@
 
 > **世界上最轻量、最小的 Kafka 客户端之一。** 单个可执行文件约 8 MB，启动即用，专注连接、查看和发送 Kafka 消息。
 
+[![CI](https://github.com/peterzhou12345/Kaflow/actions/workflows/ci.yml/badge.svg)](https://github.com/peterzhou12345/Kaflow/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE) [![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Windows%20%7C%20Ubuntu-blue.svg)](操作说明.md)
+
 轻量、本地运行的 Kafka 图形客户端，适用于 macOS、Windows 和 Ubuntu/Linux。Kaflow 的目标是成为世界上最轻、最小、最容易部署的 Kafka 客户端：无需 JVM、Node、Docker 或安装向导，下载后直接运行。
 
 ## 开始使用
 
-本目录已有编译产物：
+从 Release 下载对应平台压缩包即可直接使用；从源码仓库克隆后，也可以按下面方式构建：
 
 - macOS：双击 **启动 Kaflow.command**。
 - Windows：双击 **启动 Kaflow.bat**，使用 64 位 Windows 版本。
@@ -32,7 +34,7 @@
 ## 已实现
 
 - 保存多个连接名称、Broker 地址与认证方式；重新选择连接后输入凭据。
-- PLAINTEXT、TLS、SASL/PLAIN、SCRAM-SHA-256、SCRAM-SHA-512；自定义 CA、PEM 客户端证书及私钥（mTLS）。TLS 校验证书及主机名，没有跳过校验选项。
+- PLAINTEXT、TLS、SASL/PLAIN、SCRAM-SHA-256、SCRAM-SHA-512；自定义 CA、PEM 客户端证书及私钥（mTLS）。TLS 默认校验证书及主机名，也兼容显式关闭主机名校验的内部 Kafka 证书。
 - Topic 列表与搜索，内部 Topic 开关，分区/副本/ISR/Leader。
 - 创建 Topic，输入完整名称确认删除。
 - 按最早、最近、指定 Offset 读取；全部分区或单分区；50–1000 条限制。
@@ -70,7 +72,7 @@ sh scripts/build-all.sh
 
 输出 `dist/kaflow-darwin-arm64`、`dist/kaflow-darwin-amd64`、`dist/kaflow-windows-amd64.exe`、`dist/kaflow-linux-amd64` 和 `dist/kaflow-linux-arm64`。Go 版本兼容性决定当前锁定的 franz-go 依赖版本，详见 go.mod/go.sum。
 
-`dist/` 同时提供可直接分发的压缩包：`Kaflow-macos-arm64.zip`、`Kaflow-macos-amd64.zip`、`Kaflow-windows-amd64.zip`、`Kaflow-ubuntu-amd64.zip` 和 `Kaflow-ubuntu-arm64.zip`。每个压缩包都包含对应执行文件、启动脚本、README 和中英文操作说明。
+构建脚本会把平台执行文件放在 `dist/`。发布时建议把 `Kaflow-macos-arm64.zip`、`Kaflow-macos-amd64.zip`、`Kaflow-windows-amd64.zip`、`Kaflow-ubuntu-amd64.zip` 和 `Kaflow-ubuntu-arm64.zip` 作为 Release assets 上传；每个压缩包应包含对应执行文件、启动脚本、README 和中英文操作说明。
 
 分发时只需把对应平台二进制和启动脚本放在同一目录。本地构建无需安装；macOS 产物没有 Apple Developer ID 签名或公证，通过网络下载的副本可能触发 Gatekeeper，需在系统「隐私与安全性」中允许打开。Ubuntu 需要给启动脚本执行权限：`chmod +x 启动\\ Kaflow.sh`。
 

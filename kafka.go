@@ -36,6 +36,7 @@ type connection struct {
 	CA         string `json:"ca"`
 	Cert       string `json:"cert"`
 	PrivateKey string `json:"privateKey"`
+	SkipHostnameVerify bool `json:"skipHostnameVerify"`
 	SASL       string `json:"sasl"`
 	Username   string `json:"username"`
 	Password   string `json:"password"`
@@ -98,7 +99,7 @@ func (c connection) options() ([]kgo.Opt, error) {
 	if c.TLS {
 		// Kafka configurations commonly use an empty endpoint identification algorithm
 		// with private-cluster certificates whose SANs are internal service names.
-		cfg := &tls.Config{MinVersion: tls.VersionTLS12, InsecureSkipVerify: true} // #nosec G402: required for compatibility with the supplied Kafka configuration
+		cfg := &tls.Config{MinVersion: tls.VersionTLS12, InsecureSkipVerify: c.SkipHostnameVerify} // #nosec G402: explicit user-selected compatibility option
 		if c.CA != "" {
 			pool, err := x509.SystemCertPool()
 			if err != nil {
