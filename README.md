@@ -88,3 +88,10 @@ KAFLOW_TEST_BROKERS=127.0.0.1:19092 go test -race -run TestKafkaIntegration -v .
 真实集成：创建 → metadata → 指定分区发送 Unicode/空字符串/Tombstone/Headers → 三种读取模式 → 空分区和尾部单条 → offsets → 提交测试组位点 → Lag 为 3 且浏览不改变提交位点 → 删除确认 → 删除 → 断开。
 
 技术选型：[franz-go](https://github.com/twmb/franz-go) 提供 Kafka 协议实现；Go 标准库提供本地 HTTP 服务，原生 HTML/CSS/JavaScript 提供界面。没有前端构建依赖或遥测 SDK。
+
+## Project Metadata
+
+- Citation: see [`CITATION.cff`](CITATION.cff)
+- License: MIT
+- Contributions: see [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- Continuous integration: GitHub Actions builds/tests all supported targets

@@ -1,0 +1,33 @@
+name: Bug report
+description: Report a reproducible problem
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: "请不要粘贴密码、Token、私钥、完整证书或生产消息。"
+  - type: input
+    id: version
+    attributes:
+      label: Kaflow version
+      description: 例如 v0.1.0 或 commit SHA
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS and architecture
+      placeholder: macOS 15 arm64 / Ubuntu 24.04 amd64
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Error text and expected behavior
+    validations:
+      required: true

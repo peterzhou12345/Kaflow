@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "Kaflow: Lightweight Cross-Platform Kafka Client"
+message: "If Kaflow helps your work, please cite this project."
+type: software
+authors:
+  - family-names: Zhou
+    given-names: Junfeng
+    email: 1308240505@qq.com
+repository-code: "https://github.com/peterzhou12345/Kaflow"
+repository-artifact: "https://gitee.com/dashuntech/kaflow"
+abstract: "A small standalone Kafka GUI client for macOS, Windows, and Ubuntu/Linux."
+keywords:
+  - kafka
+  - kafka-client
+  - kafka-gui
+  - kafka-tool
+  - golang
+  - macos
+  - windows
+  - ubuntu
+  - sasl
+  - tls
+license: MIT
+version: 0.1.0
+date-released: 2026-09-15
